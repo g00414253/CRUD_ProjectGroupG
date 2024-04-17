@@ -13,7 +13,7 @@ public class DeleteTest {
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             // Create a PreparedStatement for deleting an existing exercise
-            String deleteQuery = "DELETE FROM Exercises WHERE exercise_name = ?";
+            String deleteQuery = "DELETE FROM Exercise WHERE ExerciseName = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
             preparedStatement.setString(1, "Push-up");
 

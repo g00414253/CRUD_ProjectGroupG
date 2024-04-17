@@ -14,15 +14,15 @@ public class ReadTest {
 
             // Create a Statement for executing a select query
             Statement statement = connection.createStatement();
-            String selectQuery = "SELECT * FROM Exercises";
+            String selectQuery = "SELECT * FROM Exercise";
             ResultSet resultSet = statement.executeQuery(selectQuery);
 
             // Print the retrieved exercise data
             while (resultSet.next()) {
-                int exerciseId = resultSet.getInt("exercise_id");
-                String exerciseName = resultSet.getString("exercise_name");
-                String description = resultSet.getString("description");
-                int categoryId = resultSet.getInt("category_id");
+                int exerciseId = resultSet.getInt("ExerciseId");
+                String exerciseName = resultSet.getString("ExerciseName");
+                String description = resultSet.getString("Description");
+                int categoryId = resultSet.getInt("CategoryId");
                 System.out.println("Exercise ID: " + exerciseId + ", Name: " + exerciseName + ", Description: " + description + ", Category ID: " + categoryId);
             }
 

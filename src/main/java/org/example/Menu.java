@@ -16,9 +16,19 @@ public class Menu {
             System.out.println("2. Read Exercise");
             System.out.println("3. Update Exercise");
             System.out.println("4. Delete Exercise");
+            System.out.println("=== Users Menu ===");
+            //Login User -Username Password - Gets created to make account - can change password
+            //Login Admin - Username Password - Admin account already exists - password can be changed with old
+
+            System.out.println("=== Applications Menu ===");
             System.out.println("5. Record New Workout");
             System.out.println("6. View Workouts");
+            //Possible feature(already made as they are in my IOT project)
+            //1 Rep max Calculator
+            //BMR Calculator
+            //Macro Calculator
             System.out.println("7. Exit");
+
             System.out.print("Enter your choice: ");
 
             // Read user input

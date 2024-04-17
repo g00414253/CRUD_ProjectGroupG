@@ -2,11 +2,10 @@ package org.example;
 
 import java.util.Scanner;
 
-public class User implements CRUD_OPERATIONS {
-
+public class Admin implements CRUD_OPERATIONS{
     public void CreateExercise(Scanner scanner) {
         System.out.println("Creating exercise...");
-        System.out.println("Unable to Create exercise ADMIN ACCESS ONLY...");
+        // Implement create exercise logic using scanner input
     }
 
     public void ReadExercise() {
@@ -16,11 +15,11 @@ public class User implements CRUD_OPERATIONS {
 
     public void UpdateExercise(Scanner scanner) {
         System.out.println("Updating exercise...");
-        System.out.println("Unable to update exercise ADMIN ACCESS ONLY...");
+        // Implement update exercise logic using scanner input
     }
 
     public void DeleteExercise(Scanner scanner) {
         System.out.println("Deleting exercise...");
-        System.out.println("Unable to delete exercise ADMIN ACCESS ONLY...");
+        // Implement delete exercise logic using scanner input
     }
 }
