@@ -21,7 +21,7 @@ public class User implements CRUD_OPERATIONS {
             String exerciseDescription = scanner.nextLine();
             System.out.print("Cardio or Strength training?: ");
             int exerciseCategory = scanner.nextInt();
-//
+
             System.out.print("Exercise created:");
             System.out.print("Name: " + exerciseName);
             System.out.print("Description: " + exerciseDescription);
