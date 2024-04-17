@@ -16,6 +16,8 @@ public class Menu {
             System.out.println("2. Read Exercise");
             System.out.println("3. Update Exercise");
             System.out.println("4. Delete Exercise");
+            System.out.println();
+            System.out.println("=== Applications Menu ===");
             System.out.println("5. Record New Workout");
             System.out.println("6. View Workouts");
             System.out.println("7. Exit");
