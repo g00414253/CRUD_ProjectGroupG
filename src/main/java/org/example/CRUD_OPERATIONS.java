@@ -1,8 +1,9 @@
 package org.example;
 
+import java.util.Scanner;
 interface CRUD_OPERATIONS {
-    void CreateExercise();
+    void CreateExercise(Scanner scanner);
     void ReadExercise();
-    void UpdateExercise();
-    void DeleteExercise();
+    void UpdateExercise(Scanner scanner);
+    void DeleteExercise(Scanner scanner);
 }

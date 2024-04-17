@@ -1,26 +1,26 @@
 package org.example;
 
-public class User implements ExerciseCRUD {
-    @Override
-    public void createExercise(Scanner scanner) {
+import java.util.Scanner;
+
+public class User implements CRUD_OPERATIONS {
+
+    public void CreateExercise(Scanner scanner) {
         System.out.println("Creating exercise...");
         // Implement create exercise logic using scanner input
     }
 
-    @Override
-    public void readExercise() {
+    public void ReadExercise() {
         System.out.println("Reading exercise...");
         // Implement read exercise logic
     }
 
-    @Override
-    public void updateExercise(Scanner scanner) {
+    public void UpdateExercise(Scanner scanner) {
         System.out.println("Updating exercise...");
         // Implement update exercise logic using scanner input
     }
 
-    @Override
-    public void deleteExercise(Scanner scanner) {
+    public void DeleteExercise(Scanner scanner) {
         System.out.println("Deleting exercise...");
         // Implement delete exercise logic using scanner input
     }
+}
