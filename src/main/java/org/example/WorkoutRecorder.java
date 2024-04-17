@@ -107,13 +107,31 @@ public class WorkoutRecorder {
 
     public void DisplayWorkout() {
         System.out.println("=== Workout History ===");
+
+        String currentDate = null; // Variable to store the current date
+        boolean headerPrinted = false; // Flag to track whether header has been printed for current date
+
         for (WorkoutSession session : workoutSessions) {
-            System.out.println("Date: " + session.getDate());
-            System.out.println("Exercise: " + session.getExercise());
-            System.out.println("Sets: " + session.getSets());
-            System.out.println("Reps: " + session.getReps());
-            System.out.println("Weight: " + session.getWeight());
+            // Check if the date has changed since the last session
+            if (currentDate == null || !currentDate.equals(session.getDate())) {
+                currentDate = session.getDate();
+                System.out.println("Date: " + currentDate);
+                headerPrinted = false; // Reset the flag for the new date
+            }
+
+            // Print header only once per date
+            if (!headerPrinted) {
+                System.out.printf("%-15s%-10s%-10s%-10s%n",
+                        "Exercise", "Sets", "Reps", "Weight");
+                System.out.println("-".repeat(45)); // Underline the header
+                headerPrinted = true; // Set the flag to true after printing the header
+            }
+
+            // Print exercise details with aligned columns
+            System.out.printf("%-15s%-10d%-10d%-10d%n",
+                    session.getExercise(), session.getSets(), session.getReps(), session.getWeight());
             System.out.println();
         }
     }
+
 }
