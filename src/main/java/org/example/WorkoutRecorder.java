@@ -11,6 +11,7 @@ public class WorkoutRecorder {
         private int sets;
         private int reps;
         private int weight;
+        private boolean choice=true;
 
         public WorkoutSession(String date, String exercise, int sets, int reps, int weight) {
             this.date = date;
@@ -75,7 +76,36 @@ public class WorkoutRecorder {
         workoutSessions.add(session);
     }
 
-    public void displayWorkoutHistory() {
+    public void RecordUserWorkout() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter date (YYYY-MM-DD):");
+        String date = scanner.nextLine();
+
+        boolean choice;
+
+        do {
+            System.out.println("Enter exercise:");
+            String exercise = scanner.nextLine();
+
+            System.out.println("Enter number of sets:");
+            int sets = scanner.nextInt();
+
+            System.out.println("Enter number of reps:");
+            int reps = scanner.nextInt();
+
+            System.out.println("Enter weight (in kilograms):");
+            int weight = scanner.nextInt();
+
+            recordWorkout(date, exercise, sets, reps, weight);
+
+            System.out.println("Do you have another entry to make (true/false):");
+            choice = scanner.nextBoolean();
+            scanner.nextLine();
+        } while (choice == true);
+    }
+
+    public void DisplayWorkout() {
         System.out.println("=== Workout History ===");
         for (WorkoutSession session : workoutSessions) {
             System.out.println("Date: " + session.getDate());
