@@ -1,5 +1,7 @@
 package Testing;
 
+import org.example.User;
+
 import java.sql.*;
 
 public class CreateTest {
