@@ -13,7 +13,7 @@ public class CreateTest {
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             // Create a PreparedStatement for inserting a new exercise
-            String insertQuery = "INSERT INTO Exercises (exercise_name, description, category_id) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO Exercise (ExerciseName, Description, CategoryId) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, "Push-up");
             preparedStatement.setString(2, "Bodyweight exercise targeting chest and arms");
