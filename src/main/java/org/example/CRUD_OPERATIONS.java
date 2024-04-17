@@ -1,8 +1,8 @@
 package org.example;
 
-public interface CRUD_OPERATIONS {
-    void Create();
-    void Read();
-    void Update();
-    void Delete();
+interface CRUD_OPERATIONS {
+    void CreateExercise();
+    void ReadExercise();
+    void UpdateExercise();
+    void DeleteExercise();
 }
