@@ -3,6 +3,8 @@ package org.example;
 import java.util.Scanner;
 
 public class User implements CRUD_OPERATIONS {
+    private String Username;
+    private String Password;
 
     public void CreateExercise(Scanner scanner) {
         System.out.println("Creating exercise...");
