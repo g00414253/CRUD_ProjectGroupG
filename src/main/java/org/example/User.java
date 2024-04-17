@@ -1,24 +1,26 @@
-public class User implements CRUD_OPERATIONS {
+package org.example;
+
+public class User implements ExerciseCRUD {
     @Override
-    public void CreateExercise(Scanner scanner) {
+    public void createExercise(Scanner scanner) {
         System.out.println("Creating exercise...");
         // Implement create exercise logic using scanner input
     }
 
     @Override
-    public void ReadExercise() {
+    public void readExercise() {
         System.out.println("Reading exercise...");
         // Implement read exercise logic
     }
 
     @Override
-    public void UpdateExercise(Scanner scanner) {
+    public void updateExercise(Scanner scanner) {
         System.out.println("Updating exercise...");
         // Implement update exercise logic using scanner input
     }
 
     @Override
-    public void DeleteExercise(Scanner scanner) {
+    public void deleteExercise(Scanner scanner) {
         System.out.println("Deleting exercise...");
         // Implement delete exercise logic using scanner input
     }
