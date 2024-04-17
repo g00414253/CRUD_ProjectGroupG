@@ -3,6 +3,9 @@ package org.example;
 import java.util.Scanner;
 
 public class Admin implements CRUD_OPERATIONS{
+    private String Username;
+    private String Password;
+
     public void CreateExercise(Scanner scanner) {
         System.out.println("Creating exercise...");
         // Implement create exercise logic using scanner input
