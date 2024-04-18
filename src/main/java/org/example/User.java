@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class User implements CRUD_OPERATIONS {
     private String Username;
-    private String Password;
+    private  String Password;
     boolean UserAccess = false;
 
     //Not finished or working need to create a function to make user first
@@ -22,14 +22,7 @@ public class User implements CRUD_OPERATIONS {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
 
-        // Authenticate admin
-        if (username.equals(Username) && password.equals(Password)) {
-            System.out.println("Admin login successful.");
-            boolean UserAccess = true;
-        } else {
-            System.out.println("Invalid username or password. Please try again.");
-            boolean UserAccess = false;
-        }
+        boolean UserAccess = true;
     }
 
     public void CreateExercise(Scanner scanner) {

@@ -34,6 +34,7 @@ public class Menu {
 
             switch (choice) {
                 case 1:
+                    //Need to add to check if user or admin and call operations from according class
                     user.CreateExercise(scanner);
                     break;
                 case 2:
@@ -78,7 +79,7 @@ public class Menu {
 
             System.out.println(); // Add an empty line for better readability
 
-        } while (choice != 7);
+        } while (choice != 12);
         scanner.close(); // Close the scanner to prevent resource leak
     }
 }
