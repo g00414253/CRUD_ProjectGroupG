@@ -9,6 +9,28 @@ import java.util.Scanner;
 public class User implements CRUD_OPERATIONS {
     private String Username;
     private String Password;
+    boolean UserAccess = false;
+
+    //Not finished or working need to create a function to make user first
+    public static void UserLogin() {
+        Scanner scanner = new Scanner(System.in);
+        String Username = scanner.nextLine();
+
+        System.out.println("=== USer Login ===");
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        // Authenticate admin
+        if (username.equals(Username) && password.equals(Password)) {
+            System.out.println("Admin login successful.");
+            boolean UserAccess = true;
+        } else {
+            System.out.println("Invalid username or password. Please try again.");
+            boolean UserAccess = false;
+        }
+    }
 
     public void CreateExercise(Scanner scanner) {
         System.out.println("Creating exercise...");

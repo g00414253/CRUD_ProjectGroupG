@@ -1,3 +1,5 @@
+//Code to test the 'Delete' operation with our SQL
+
 package Testing;
 
 import java.sql.*;
