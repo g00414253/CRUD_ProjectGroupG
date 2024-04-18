@@ -12,7 +12,7 @@ public class User implements CRUD_OPERATIONS {
     boolean UserAccess = false;
 
     //Not finished or working need to create a function to make user first
-    public static boolean UserLogin() {
+    public static void UserLogin() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== USer Login ===");
@@ -24,10 +24,10 @@ public class User implements CRUD_OPERATIONS {
         // Check fi username and password are correct
         if (username.equals("user") && password.equals("test")) {
             System.out.println("Login successful");
-            return true;
+            boolean UserAccess = true;
         } else {
             System.out.println("Invalid username or password, please try  again");
-            return false;
+            boolean UserAccess = false;
         }
     }
 
