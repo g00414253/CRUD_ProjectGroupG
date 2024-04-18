@@ -12,15 +12,23 @@ public class User implements CRUD_OPERATIONS {
     boolean UserAccess = false;
 
     //Not finished or working need to create a function to make user first
-    public static void UserLogin() {
+    public static boolean UserLogin() {
         Scanner scanner = new Scanner(System.in);
-        String Username = scanner.nextLine();
 
         System.out.println("=== USer Login ===");
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
+
+        // Check fi username and password are correct
+        if (username.equals("user") && password.equals("test")) {
+            System.out.println("Login successful");
+            return true;
+        } else {
+            System.out.println("Invalid username or password, please try  again");
+            return false;
+        }
     }
 
     public void CreateExercise(Scanner scanner) {
