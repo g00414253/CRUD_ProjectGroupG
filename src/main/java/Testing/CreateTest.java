@@ -1,3 +1,5 @@
+//Code to test the 'Create' operation with our SQL
+
 package Testing;
 
 import java.sql.*;
