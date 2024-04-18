@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Admin implements CRUD_OPERATIONS{
@@ -74,8 +71,35 @@ public static void AdminLogin() {
     }
 
     public void ReadExercise() {
-        System.out.println("Reading exercise...");
-        // Implement read exercise logic using scanner input
+        String URL = "jdbc:mysql://localhost:3306/exerciseData";
+        String USERNAME = "root";
+        String PASSWORD = "password";
+
+        try {
+            // Establish connection
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            // Create a Statement for executing a select query
+            Statement statement = connection.createStatement();
+            String selectQuery = "SELECT * FROM Exercise";
+            ResultSet resultSet = statement.executeQuery(selectQuery);
+
+            // Print the retrieved exercise data
+            while (resultSet.next()) {
+                int exerciseId = resultSet.getInt("ExerciseId");
+                String exerciseName = resultSet.getString("ExerciseName");
+                String description = resultSet.getString("Description");
+                int categoryId = resultSet.getInt("CategoryId");
+                System.out.println("Exercise ID: " + exerciseId + ", Name: " + exerciseName + ", Description: " + description + ", Category ID: " + categoryId);
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void UpdateExercise(Scanner scanner) {
