@@ -9,7 +9,7 @@ import java.sql.*;
 public class User implements CRUD_OPERATIONS {
 
     public void CreateExercise(Scanner scanner) {
-        String URL = "jdbc:mysql://localhost:3306/exercisedata";
+        String URL = "jdbc:mysql://localhost:3306/exerciseData";
         String USERNAME = "root";
         String PASSWORD = "password";
         try {
