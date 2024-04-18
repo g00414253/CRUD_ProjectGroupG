@@ -1,5 +1,9 @@
 package org.example;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Admin implements CRUD_OPERATIONS{
@@ -27,8 +31,45 @@ public static void AdminLogin() {
     }
 
     public void CreateExercise(Scanner scanner) {
-        System.out.println("Creating exercise...");
-        // Implement create exercise logic using scanner input
+        String URL = "jdbc:mysql://localhost:3306/exerciseData";
+        String USERNAME = "root";
+        String PASSWORD = "password";
+        try {
+            System.out.println("Creating exercise...");
+            // Implement create exercise logic using scanner input
+            System.out.print("Enter exercise: ");
+            String exerciseName = scanner.nextLine();
+            System.out.print("Enter exercise description: ");
+            String exerciseDescription = scanner.nextLine();
+            System.out.print("Cardio or Strength training?: ");
+            int exerciseCategory = scanner.nextInt();
+
+            System.out.print("Exercise created:");
+            System.out.print("Name: " + exerciseName);
+            System.out.print("Description: " + exerciseDescription);
+            System.out.print("Category: " + exerciseCategory);
+
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            // Create a PreparedStatement for inserting a new exercise
+            String insertQuery = "INSERT INTO Exercise (ExerciseName, Description, CategoryId) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, exerciseName);
+            preparedStatement.setString(2, exerciseDescription);
+            preparedStatement.setInt(3, exerciseCategory); // Assuming category_id 1 represents strength training
+            // Execute the insert statement
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Exercise created successfully");
+            } else {
+                System.out.println("Failed to create exercise");
+            }
+
+            // Close resources
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void ReadExercise() {
