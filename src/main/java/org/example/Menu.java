@@ -8,6 +8,7 @@ public class Menu {
         User user = new User();
         int choice;
 
+        Admin admin = new Admin();
         WorkoutRecorder recorder = new WorkoutRecorder();
 
         do {
@@ -18,6 +19,7 @@ public class Menu {
             System.out.println("4. Delete Exercise              8. B.M.R Calculator          12. Exit           ");
             System.out.println();
             System.out.print("Enter your choice: ");
+
             //Possible feature(already made as they are in my IOT project)
             //Login User -Username Password - Gets created to make account - can change password
             //Login Admin - Username Password - Admin account already exists - password can be changed with old
@@ -62,6 +64,7 @@ public class Menu {
                 //User Login
                     break;
                 case 11:
+                admin.AdminLogin();
                 //Admin Login
                     break;
                 case 12:

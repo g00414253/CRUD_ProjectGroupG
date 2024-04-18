@@ -25,4 +25,8 @@ public class User implements CRUD_OPERATIONS {
         System.out.println("Deleting exercise...");
         System.out.println("Unable to delete exercise ADMIN ACCESS ONLY...");
     }
+
+
+
+
 }
