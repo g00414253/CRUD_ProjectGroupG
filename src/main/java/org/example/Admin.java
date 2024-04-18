@@ -56,6 +56,7 @@ public static void AdminLogin() {
             preparedStatement.setString(1, exerciseName);
             preparedStatement.setString(2, exerciseDescription);
             preparedStatement.setInt(3, exerciseCategory); // Assuming category_id 1 represents strength training
+
             // Execute the insert statement
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -74,7 +75,7 @@ public static void AdminLogin() {
 
     public void ReadExercise() {
         System.out.println("Reading exercise...");
-        // Implement read exercise logic
+        // Implement read exercise logic using scanner input
     }
 
     public void UpdateExercise(Scanner scanner) {
@@ -83,7 +84,36 @@ public static void AdminLogin() {
     }
 
     public void DeleteExercise(Scanner scanner) {
-        System.out.println("Deleting exercise...");
-        // Implement delete exercise logic using scanner input
+        String URL = "jdbc:mysql://localhost:3306/exerciseData";
+        String USERNAME = "root";
+        String PASSWORD = "password";
+
+        try {
+            // Get user input
+            System.out.print("Enter the exercise you wish to delete: ");
+            String exerciseNameToDelete = scanner.nextLine();
+
+            // Establish connection
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            // Create a PreparedStatement for deleting an existing exercise
+            String deleteQuery = "DELETE FROM Exercise WHERE ExerciseName = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setString(1, exerciseNameToDelete);
+
+            // Execute the delete statement
+            int rowsDeleted = preparedStatement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Exercise deleted successfully");
+            } else {
+                System.out.println("Failed to delete exercise");
+            }
+
+            // Close resources
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
