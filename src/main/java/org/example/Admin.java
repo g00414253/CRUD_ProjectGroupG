@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Admin implements CRUD_OPERATIONS{
@@ -35,13 +32,11 @@ public static void AdminLogin() {
         String USERNAME = "root";
         String PASSWORD = "password";
         try {
-            System.out.println("Creating exercise...");
-            // Implement create exercise logic using scanner input
             System.out.print("Enter exercise: ");
             String exerciseName = scanner.nextLine();
             System.out.print("Enter exercise description: ");
             String exerciseDescription = scanner.nextLine();
-            System.out.print("Cardio or Strength training?: ");
+            System.out.print("1. Strength or 2. Cardio: ");
             int exerciseCategory = scanner.nextInt();
 
             System.out.print("Exercise created:");
@@ -74,13 +69,79 @@ public static void AdminLogin() {
     }
 
     public void ReadExercise() {
-        System.out.println("Reading exercise...");
-        // Implement read exercise logic using scanner input
+        String URL = "jdbc:mysql://localhost:3306/exerciseData";
+        String USERNAME = "root";
+        String PASSWORD = "password";
+
+        try {
+            // Establish connection
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            // Create a Statement for executing a select query
+            Statement statement = connection.createStatement();
+            String selectQuery = "SELECT * FROM Exercise";
+            ResultSet resultSet = statement.executeQuery(selectQuery);
+
+            // Print the retrieved exercise data
+            while (resultSet.next()) {
+                int exerciseId = resultSet.getInt("ExerciseId");
+                String exerciseName = resultSet.getString("ExerciseName");
+                String description = resultSet.getString("Description");
+                int categoryId = resultSet.getInt("CategoryId");
+                System.out.println("Exercise ID: " + exerciseId + ", Name: " + exerciseName + ", Description: " + description + ", Category ID: " + categoryId);
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void UpdateExercise(Scanner scanner) {
-        System.out.println("Updating exercise...");
-        // Implement update exercise logic using scanner input
+        String URL = "jdbc:mysql://localhost:3306/exerciseData";
+        String USERNAME = "root";
+        String PASSWORD = "password";
+
+        try {
+            // Establish connection
+            System.out.print("Enter new name: ");
+            String exerciseName = scanner.nextLine();
+            System.out.print("Enter new description: ");
+            String exerciseDescription = scanner.nextLine();
+            System.out.print("1. Strength or 2. Cardio: ");
+            int exerciseCategory = scanner.nextInt();
+
+            System.out.print("Exercise Updated:");
+            System.out.print("Name: " + exerciseName);
+            System.out.print("Description: " + exerciseDescription);
+            System.out.print("Category: " + exerciseCategory);
+
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            // Create a PreparedStatement for updating an existing exercise
+            String updateQuery = "UPDATE Exercise SET description = ?, category = ? WHERE exercise_name = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement.setString(1, exerciseName);
+            preparedStatement.setString(2, exerciseDescription);
+            preparedStatement.setInt(3, exerciseCategory);
+
+            // Execute the update statement
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Exercise updated successfully");
+            } else {
+                System.out.println("Failed to update exercise");
+            }
+
+            // Close resources
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void DeleteExercise(Scanner scanner) {
