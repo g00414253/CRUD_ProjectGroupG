@@ -83,8 +83,6 @@ public class Menu {
             // Read user input
             choiceAdmin = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
-            // Print CRUD Operations Menu for admin
-            // Implement the loop to handle admin actions
             switch (choiceAdmin) {
                 case 1:
                     admin.CreateExercise(scanner);
@@ -118,9 +116,7 @@ public class Menu {
             System.out.print("Enter your choice: ");
             // Read user input
             choiceUser = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
-            // Print Applications Menu for user
-            // Implement the loop to handle user actions
+            scanner.nextLine();
             switch (choiceUser) {
                 case 1:
                     recorder.RecordUserWorkout();
