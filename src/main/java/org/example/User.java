@@ -13,6 +13,9 @@ public class User implements CRUD_OPERATIONS {
         Password = password;
     }
 
+    public User() {
+    }
+
     public boolean UserLogin() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== User Login ===");
@@ -50,6 +53,14 @@ public class User implements CRUD_OPERATIONS {
 
     public boolean Logout() {
         return UserAccess = false;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public String getPassword() {
+        return Password;
     }
 
     public void CreateExercise(Scanner scanner) {
