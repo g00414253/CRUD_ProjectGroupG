@@ -30,6 +30,10 @@ public class Admin implements CRUD_OPERATIONS{
         return AdminAccess;
     }
 
+    public boolean Logout() {
+        return AdminAccess = false;
+    }
+
     public void CreateExercise(Scanner scanner) {
         String URL = "jdbc:mysql://localhost:3306/exerciseData";
         String USERNAME = "root";
