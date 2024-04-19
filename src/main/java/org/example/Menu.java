@@ -5,82 +5,139 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        User user = new User();
-        int choice;
 
+        //Application starts with one pre-made user
+        User user = new User("User123", "Pass123");
+
+        //Admin details are pre-created
         Admin admin = new Admin();
+
+        int choiceMenu;
+        int choiceUser;
+        int choiceAdmin;
         WorkoutRecorder recorder = new WorkoutRecorder();
 
-        do {
-            System.out.println("=== CRUD Operations Menu ===    === Applications Menu ===     === Users Menu ===");
-            System.out.println("1. Create Exercise              5. Record New Workout         9. Create User    ");
-            System.out.println("2. Read Exercise                6. View Workouts             10. User Login     ");
-            System.out.println("3. Update Exercise              7. 1 Rep Calculator          11. Admin Login    ");
-            System.out.println("4. Delete Exercise              8. B.M.R Calculator          12. Exit           ");
+        //Checks for user login
+         user.isUserAccess();
+        //Checks for admins login
+         admin.isAdminAccess();
+
+        System.out.println("User logged in: " + user.isUserAccess());
+        System.out.println("Admin logged in: " + admin.isAdminAccess());
+
+        // Print initial menu for login options
+        System.out.println("=== Users Menu ===");
+        System.out.println("1. Create User");
+        System.out.println("2. User Login");
+        System.out.println("3. Admin Login");
+        System.out.println("4. Exit");
+        System.out.println();
+        System.out.print("Enter your choice: ");
+        choiceMenu = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+
+        switch (choiceMenu) {
+            case 1:
+                // Implement user creation method
+                break;
+            case 2:
+                if (!user.isUserAccess()) {
+                    user.UserLogin();
+                    // Only prompt for login if user is not already logged in
+                }
+                break;
+            case 3:
+                if (!admin.isAdminAccess()) {
+                    admin.AdminLogin();
+                    // Only prompt for login if admin is not already logged in
+                }
+                break;
+            case 4:
+                System.out.println("Exiting...");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
+        //Checks for user login
+        user.isUserAccess();
+        //Checks for admins login
+        admin.isAdminAccess();
+
+        System.out.println("User logged in: " + user.isUserAccess());
+        System.out.println("Admin logged in: " + admin.isAdminAccess());
+
+        // After the login, check which menu to display
+        if (admin.isAdminAccess()) {
+            // Print CRUD Operations Menu
+            System.out.println("=== CRUD Operations Menu ===");
+            System.out.println("1. Create Exercise");
+            System.out.println("2. Read Exercise");
+            System.out.println("3. Update Exercise");
+            System.out.println("4. Delete Exercise");
+            System.out.println("5. Exit");
             System.out.println();
             System.out.print("Enter your choice: ");
-
-            //Possible feature(already made as they are in my IOT project)
-            //Login User -Username Password - Gets created to make account - can change password
-            //Login Admin - Username Password - Admin account already exists - password can be changed with old
-            //1 Rep max Calculator
-            //BMR Calculator
-            //Macro Calculator
-
-
+            System.out.println();
             // Read user input
-            choice = scanner.nextInt();
+            choiceAdmin = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
-
-            switch (choice) {
+            switch (choiceAdmin) {
                 case 1:
-                    user.CreateExercise(scanner);
+                    admin.CreateExercise(scanner);
                     break;
                 case 2:
-                    user.ReadExercise();
+                    admin.ReadExercise();
                     break;
                 case 3:
-                    user.UpdateExercise(scanner);
+                    admin.UpdateExercise(scanner);
                     break;
                 case 4:
-                    user.DeleteExercise(scanner);
+                    admin.DeleteExercise(scanner);
                     break;
                 case 5:
-                    recorder.RecordUserWorkout();
-                    break;
-                case 6:
-                    recorder.DisplayWorkout();
-                    break;
-                case 7:
-                 //1 Rep MAx
-                    break;
-                case 8:
-                //B.M.R Calculator
-                    break;
-                case 9:
-                //Create User
-                    break;
-                case 10:
-                //User Login
-                    user.UserLogin();
-
-                    break;
-                case 11:
-                    //Admin Login
-                    admin.AdminLogin();
-                    break;
-                case 12:
                     System.out.println("Exiting...");
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                    System.out.println("Invalid choice");
                     break;
             }
-
-            System.out.println(); // Add an empty line for better readability
-
-        } while (choice != 7);
-        scanner.close(); // Close the scanner to prevent resource leak
+        } else if (user.isUserAccess()) {
+            // Print Applications Menu
+            System.out.println("=== Applications Menu ===");
+            System.out.println("1. Record New Workout");
+            System.out.println("2. View Workouts");
+            System.out.println("3. 1 Rep Calculator");
+            System.out.println("4. B.M.R Calculator");
+            System.out.println("5. Exit");
+            System.out.println();
+            System.out.print("Enter your choice: ");
+            // Read user input
+            choiceUser = scanner.nextInt();
+            scanner.nextLine();
+            switch (choiceUser) {
+                case 1:
+                    recorder.RecordUserWorkout();
+                    break;
+                case 2:
+                    recorder.DisplayWorkout();
+                    break;
+                case 3:
+                    //1 rep max
+                    break;
+                case 4:
+                    //BMR
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        }
     }
 }

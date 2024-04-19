@@ -1,34 +1,51 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Scanner;
 
+
 public class User implements CRUD_OPERATIONS {
-    private String Username;
-    private String Password;
-    boolean UserAccess = false;
+    private  String Username;
+    private  String Password;
+    boolean UserAccess;
 
-    //Not finished or working need to create a function to make user first
-    public static void UserLogin() {
+    public User(String username, String password) {
+        Username = username;
+        Password = password;
+    }
+
+    public boolean UserLogin() {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("=== USer Login ===");
+        System.out.println("=== User Login ===");
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
 
-        // Check fi username and password are correct
-        if (username.equals("user") && password.equals("test")) {
-            System.out.println("Login successful");
-            boolean UserAccess = true;
+        // Authenticate user
+        if (username.equals(Username) && password.equals(Password)) {
+            System.out.println("User login successful.");
+           return UserAccess=true;
         } else {
-            System.out.println("Invalid username or password, please try  again");
-            boolean UserAccess = false;
+            System.out.println("Invalid username or password. Please try again.");
+            return UserAccess=false;
         }
+    }
+
+    public static User UserCreate() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("=== Create User ===");
+        System.out.print("Enter new username: ");
+        String newUsername = scanner.nextLine();
+        System.out.print("Enter new password: ");
+        String newPassword = scanner.nextLine();
+
+        // Create and return a new User object
+        return new User(newUsername, newPassword);
+    }
+
+
+    public boolean isUserAccess() {
+        return UserAccess;
     }
 
     public void CreateExercise(Scanner scanner) {
