@@ -4,13 +4,12 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Admin implements CRUD_OPERATIONS{
-    private static String Username= "Admin";
-    private static String Password= "password";
-    boolean AdminAccess = false;
+    private  String Username= "Admin";
+    private  String Password= "password";
+    boolean AdminAccess;
 
-public static void AdminLogin() {
+    public boolean AdminLogin() {
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("=== Admin Login ===");
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
@@ -20,12 +19,15 @@ public static void AdminLogin() {
         // Authenticate admin
         if (username.equals(Username) && password.equals(Password)) {
             System.out.println("Admin login successful.");
-            boolean AdminAccess = true;
-            boolean UserAccess = false;
+            return AdminAccess =true;
         } else {
             System.out.println("Invalid username or password. Please try again.");
-            boolean AdminAccess = false;
+            return AdminAccess = false;
         }
+    }
+
+    public boolean isAdminAccess() {
+        return AdminAccess;
     }
 
     public void CreateExercise(Scanner scanner) {
