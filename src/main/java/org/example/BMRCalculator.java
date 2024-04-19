@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 public class BMRCalculator {
 
-    public static void BMI(String[] args) {
+    public static void BMI() {
         Scanner scanner = new Scanner(System.in);
 
         // Input weight
@@ -27,8 +27,6 @@ public class BMRCalculator {
 
         // Interpret BMI
         interpretBMI(bmi);
-
-        scanner.close();
     }
 
     // Method to convert feet to meters

@@ -55,6 +55,10 @@ public class User implements CRUD_OPERATIONS {
         return UserAccess = false;
     }
 
+    public boolean Login() {
+        return UserAccess = true;
+    }
+
     public String getUsername() {
         return Username;
     }
