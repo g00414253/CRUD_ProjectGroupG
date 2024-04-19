@@ -24,6 +24,7 @@ public static void AdminLogin() {
         if (username.equals(Username) && password.equals(Password)) {
             System.out.println("Admin login successful.");
             boolean AdminAccess = true;
+            boolean UserAccess = false;
         } else {
             System.out.println("Invalid username or password. Please try again.");
             boolean AdminAccess = false;
@@ -115,5 +116,7 @@ public static void AdminLogin() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 }
