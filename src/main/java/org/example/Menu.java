@@ -62,10 +62,12 @@ public class Menu {
                     break;
                 case 10:
                 //User Login
+                    user.UserLogin();
+
                     break;
                 case 11:
-                admin.AdminLogin();
-                //Admin Login
+                    //Admin Login
+                    admin.AdminLogin();
                     break;
                 case 12:
                     System.out.println("Exiting...");
