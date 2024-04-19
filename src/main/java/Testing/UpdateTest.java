@@ -15,7 +15,7 @@ public class UpdateTest {
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             // Create a PreparedStatement for updating an existing exercise
-            String updateQuery = "UPDATE Exercise SET description = ? WHERE exercise_name = ?";
+            String updateQuery = "UPDATE exercise SET Description = ? WHERE ExerciseName = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
             preparedStatement.setString(1, "Bodyweight exercise targeting chest, arms, and core");
             preparedStatement.setString(2, "Push-up");

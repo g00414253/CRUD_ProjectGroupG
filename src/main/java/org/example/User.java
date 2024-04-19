@@ -48,6 +48,10 @@ public class User implements CRUD_OPERATIONS {
         return UserAccess;
     }
 
+    public boolean Logout() {
+        return UserAccess = false;
+    }
+
     public void CreateExercise(Scanner scanner) {
         System.out.println("Creating exercise...");
         System.out.println("Unable to create exercise ADMIN ACCESS ONLY...");
