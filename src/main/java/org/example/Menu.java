@@ -15,21 +15,20 @@ public class Menu {
         users.add(startUser);
         users.add(secondUser);
 
-        User LoggedInUser = new User();
 
         //Admin details are pre-created
         Admin admin = new Admin();
 
         WorkoutRecorder recorder = new WorkoutRecorder();
 
-        System.out.println("Admin logged in: " + admin.isAdminAccess());
 
         do {
             // Print the list of users
             System.out.println("=== List of Users ===");
             for (User u : users) {
-                System.out.println("Username: " + u.getUsername() + ", Password: " + u.getPassword());
+                System.out.println("Username: " + u.getUsername());
             }
+            System.out.println();
 
             // Print initial menu for login options
             System.out.println("=== Users Menu ===");
@@ -53,6 +52,7 @@ public class Menu {
                     }
                     // Add the new user to the list of users
                     users.add(newUser);
+                    newUser.Login();
                     break;
                 case 2:
                         System.out.println("Enter user credentials:");
@@ -65,7 +65,7 @@ public class Menu {
                         for (User u : users) {
                             if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                                 // If match found, log in the user
-                                u.UserLogin();
+                                u.Login();
                                 System.out.println("Logged in successfully: " + u.getUsername());
                                 break;
                             } else {
@@ -89,7 +89,7 @@ public class Menu {
             }
 
             // After the login, check which menu to display
-            if (admin.isAdminAccess()) {
+            while (admin.isAdminAccess()) {
                 // Print CRUD Operations Menu
                 System.out.println("=== CRUD Operations Menu ===");
                 System.out.println("1. Create Exercise");
@@ -129,9 +129,9 @@ public class Menu {
                         System.out.println("Invalid choice");
                         break;
                 }
-            } else{
+            }
                 for (User u : users) {
-                    if (u.isUserAccess()) {
+                    while (u.isUserAccess()) {
                         // Print Applications Menu
                         System.out.println("=== Applications Menu ===");
                         System.out.println("1. Record New Workout");
@@ -153,10 +153,12 @@ public class Menu {
                                 recorder.DisplayWorkout();
                                 break;
                             case 3:
-                                //1 rep max
+                                RepMax.RM();
+                                System.out.println();
                                 break;
                             case 4:
-                                //BMR
+                                BMRCalculator.BMI();
+                                System.out.println();
                                 break;
                             case 5:
                                 u.Logout();
@@ -170,11 +172,8 @@ public class Menu {
                                 System.out.println("Invalid choice");
                                 break;
                         }
-                        // Once a logged-in user is found, break out of the loop
-                        break;
                     }
                 }
-            }
         }while(true);
     }
 }

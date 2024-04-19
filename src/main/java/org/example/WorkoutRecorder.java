@@ -102,7 +102,7 @@ public class WorkoutRecorder {
             System.out.println("Do you have another entry to make (true/false):");
             choice = scanner.nextBoolean();
             scanner.nextLine();
-        } while (choice == true);
+        } while (choice );
     }
 
     public void DisplayWorkout() {
