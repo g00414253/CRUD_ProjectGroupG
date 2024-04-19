@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -7,22 +9,28 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         //Application starts with one pre-made user
-        User user = new User("User123", "Pass123");
+        User startUser = new User("User123", "Pass123");
+        User secondUser = new User("User456", "Pass456");
+        List<User> users = new ArrayList<>(); // Store created users
+        users.add(startUser);
+        users.add(secondUser);
+
+        User LoggedInUser = new User();
 
         //Admin details are pre-created
         Admin admin = new Admin();
 
         WorkoutRecorder recorder = new WorkoutRecorder();
 
-        //Checks for user login
-         user.isUserAccess();
-        //Checks for admins login
-         admin.isAdminAccess();
-
-        System.out.println("User logged in: " + user.isUserAccess());
         System.out.println("Admin logged in: " + admin.isAdminAccess());
 
         do {
+            // Print the list of users
+            System.out.println("=== List of Users ===");
+            for (User u : users) {
+                System.out.println("Username: " + u.getUsername() + ", Password: " + u.getPassword());
+            }
+
             // Print initial menu for login options
             System.out.println("=== Users Menu ===");
             System.out.println("1. Create User");
@@ -36,13 +44,34 @@ public class Menu {
 
             switch (choiceMenu) {
                 case 1:
-                    // Implement user creation method
+                    // Create a new user
+                    User newUser = User.UserCreate();
+                    System.out.println("User created successfully: " + newUser.getUsername());
+                    // Log out all other users
+                    for (User u : users) {
+                        u.Logout();
+                    }
+                    // Add the new user to the list of users
+                    users.add(newUser);
                     break;
                 case 2:
-                    if (!user.isUserAccess()) {
-                        user.UserLogin();
-                        // Only prompt for login if user is not already logged in
-                    }
+                        System.out.println("Enter user credentials:");
+                        System.out.print("Username: ");
+                        String username = scanner.nextLine();
+                        System.out.print("Password: ");
+                        String password = scanner.nextLine();
+
+                        // Check if the entered credentials match any user
+                        for (User u : users) {
+                            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                                // If match found, log in the user
+                                u.UserLogin();
+                                System.out.println("Logged in successfully: " + u.getUsername());
+                                break;
+                            } else {
+                                System.out.println("Invalid credentials");
+                            }
+                        }
                     break;
                 case 3:
                     if (!admin.isAdminAccess()) {
@@ -58,13 +87,6 @@ public class Menu {
                     System.out.println("Invalid choice");
                     break;
             }
-            //Checks for user login
-            user.isUserAccess();
-            //Checks for admins login
-            admin.isAdminAccess();
-
-            System.out.println("User logged in: " + user.isUserAccess());
-            System.out.println("Admin logged in: " + admin.isAdminAccess());
 
             // After the login, check which menu to display
             if (admin.isAdminAccess()) {
@@ -107,44 +129,50 @@ public class Menu {
                         System.out.println("Invalid choice");
                         break;
                 }
-            } else if (user.isUserAccess()) {
-                // Print Applications Menu
-                System.out.println("=== Applications Menu ===");
-                System.out.println("1. Record New Workout");
-                System.out.println("2. View Workouts");
-                System.out.println("3. 1 Rep Calculator");
-                System.out.println("4. B.M.R Calculator");
-                System.out.println("5. Log out");
-                System.out.println("6. Exit");
-                System.out.println();
-                System.out.print("Enter your choice: ");
-                // Read user input
-                int choiceUser = scanner.nextInt();
-                scanner.nextLine();
-                switch (choiceUser) {
-                    case 1:
-                        recorder.RecordUserWorkout();
+            } else{
+                for (User u : users) {
+                    if (u.isUserAccess()) {
+                        // Print Applications Menu
+                        System.out.println("=== Applications Menu ===");
+                        System.out.println("1. Record New Workout");
+                        System.out.println("2. View Workouts");
+                        System.out.println("3. 1 Rep Calculator");
+                        System.out.println("4. B.M.R Calculator");
+                        System.out.println("5. Log out");
+                        System.out.println("6. Exit");
+                        System.out.println();
+                        System.out.print("Enter your choice: ");
+                        // Read user input
+                        int choiceUser = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (choiceUser) {
+                            case 1:
+                                recorder.RecordUserWorkout();
+                                break;
+                            case 2:
+                                recorder.DisplayWorkout();
+                                break;
+                            case 3:
+                                //1 rep max
+                                break;
+                            case 4:
+                                //BMR
+                                break;
+                            case 5:
+                                u.Logout();
+                                System.out.println("Logged out successfully.");
+                                break;
+                            case 6:
+                                System.out.println("Exiting...");
+                                System.exit(0);
+                                break;
+                            default:
+                                System.out.println("Invalid choice");
+                                break;
+                        }
+                        // Once a logged-in user is found, break out of the loop
                         break;
-                    case 2:
-                        recorder.DisplayWorkout();
-                        break;
-                    case 3:
-                        //1 rep max
-                        break;
-                    case 4:
-                        //BMR
-                        break;
-                    case 5:
-                        user.Logout();
-                        System.out.println("Logged out successfully.");
-                        break;
-                    case 6:
-                        System.out.println("Exiting...");
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Invalid choice");
-                        break;
+                    }
                 }
             }
         }while(true);
