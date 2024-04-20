@@ -19,10 +19,8 @@ public class User implements CRUD_OPERATIONS {
     public boolean UserLogin() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== User Login ===");
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+        String username = InputUtils.readString("Enter username: ");
+        String password = InputUtils.readString("Enter password: ");
 
         // Authenticate user
         if (username.equals(Username) && password.equals(Password)) {
@@ -37,10 +35,8 @@ public class User implements CRUD_OPERATIONS {
     public static User UserCreate() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== Create User ===");
-        System.out.print("Enter new username: ");
-        String newUsername = scanner.nextLine();
-        System.out.print("Enter new password: ");
-        String newPassword = scanner.nextLine();
+        String newUsername = InputUtils.readString("Enter new username: ");
+        String newPassword = InputUtils.readString("Enter new password: ");
 
         // Create and return a new User object
         return new User(newUsername, newPassword);

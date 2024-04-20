@@ -1,32 +1,40 @@
 package org.example;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 public class BMRCalculator {
 
     public static void BMI() {
         Scanner scanner = new Scanner(System.in);
 
-        // Input weight
-        System.out.print("Enter your weight in kg: ");
-        double weight = scanner.nextDouble();
+        try {
+            // Input weight
+            System.out.print("Enter your weight in kg: ");
+            double weight = scanner.nextDouble();
 
-        // Input height
-        System.out.print("Enter your height in feet: ");
-        int feet = scanner.nextInt();
-        System.out.print("Enter your height in inches: ");
-        int inches = scanner.nextInt();
+            // Input height
+            System.out.print("Enter your height in feet: ");
+            int feet = scanner.nextInt();
+            System.out.print("Enter your height in inches: ");
+            int inches = scanner.nextInt();
 
-        // Convert height to meters
-        double heightInMeters = convertToMeters(feet, inches);
+            // Convert height to meters
+            double heightInMeters = convertToMeters(feet, inches);
 
-        // Calculate BMI
-        double bmi = calculateBMI(weight, heightInMeters);
+            // Calculate BMI
+            double bmi = calculateBMI(weight, heightInMeters);
 
-        // Display BMI
-        System.out.print("Your BMI is: ");
+            // Display BMI
+            System.out.print("Your BMI is: ");
 
-        // Interpret BMI
-        interpretBMI(bmi);
+            // Interpret BMI
+            interpretBMI(bmi);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+            scanner.nextLine(); // Clear the input buffer
+            BMI(); // Recursive call to retry input
+        }
     }
 
     // Method to convert feet to meters
