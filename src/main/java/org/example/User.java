@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 
 public class User implements CRUD_OPERATIONS {
-    private  String Username;
-    private  String Password;
+    private final String Username;
+    private  final String Password;
     boolean UserAccess;
 
     public User(String username, String password) {
@@ -13,27 +13,7 @@ public class User implements CRUD_OPERATIONS {
         Password = password;
     }
 
-    public User() {
-    }
-
-    public boolean UserLogin() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("=== User Login ===");
-        String username = InputUtils.readString("Enter username: ");
-        String password = InputUtils.readString("Enter password: ");
-
-        // Authenticate user
-        if (username.equals(Username) && password.equals(Password)) {
-            System.out.println("User login successful.");
-           return UserAccess=true;
-        } else {
-            System.out.println("Invalid username or password. Please try again.");
-            return UserAccess=false;
-        }
-    }
-
     public static User UserCreate() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("=== Create User ===");
         String newUsername = InputUtils.readString("Enter new username: ");
         String newPassword = InputUtils.readString("Enter new password: ");
@@ -47,12 +27,12 @@ public class User implements CRUD_OPERATIONS {
         return UserAccess;
     }
 
-    public boolean Logout() {
-        return UserAccess = false;
+    public void Logout() {
+        UserAccess = false;
     }
 
-    public boolean Login() {
-        return UserAccess = true;
+    public void Login() {
+        UserAccess = true;
     }
 
     public String getUsername() {

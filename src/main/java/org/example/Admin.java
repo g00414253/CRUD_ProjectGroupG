@@ -7,7 +7,6 @@ public class Admin implements CRUD_OPERATIONS{
     boolean AdminAccess;
 
     public void AdminLogin() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("=== Admin Login ===");
         String username = InputUtils.readString("Enter username: ");
         String password = InputUtils.readString("Enter password: ");

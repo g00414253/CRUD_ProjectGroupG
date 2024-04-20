@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class InputUtils {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     // Method to safely read an integer from the user
     public static int readInt(String prompt) {
@@ -46,10 +46,5 @@ public class InputUtils {
                 System.out.println("Invalid input. Please enter 'true' or 'false'.");
             }
         }
-    }
-
-    // Method to close the scanner
-    public static void closeScanner() {
-        scanner.close();
     }
 }
