@@ -7,12 +7,9 @@ public class Admin implements CRUD_OPERATIONS{
     boolean AdminAccess;
 
     public void AdminLogin() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("=== Admin Login ===");
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+        String username = InputUtils.readString("Enter username: ");
+        String password = InputUtils.readString("Enter password: ");
 
         // Authenticate admin
         String username1 = "Admin";
@@ -39,12 +36,9 @@ public class Admin implements CRUD_OPERATIONS{
         String USERNAME = "root";
         String PASSWORD = "password";
         try {
-            System.out.print("Enter exercise: ");
-            String exerciseName = scanner.nextLine();
-            System.out.print("Enter exercise description: ");
-            String exerciseDescription = scanner.nextLine();
-            System.out.print("1. Strength or 2. Cardio: ");
-            int exerciseCategory = scanner.nextInt();
+            String exerciseName = InputUtils.readString("Enter exercise: ");
+            String exerciseDescription = InputUtils.readString("Enter exercise description: ");
+            int exerciseCategory = InputUtils.readInt("Enter exercise category: ");
 
             System.out.print("Exercise created:");
             System.out.print("Name: " + exerciseName);
@@ -114,12 +108,9 @@ public class Admin implements CRUD_OPERATIONS{
 
         try {
             // Establish connection
-            System.out.print("Enter new name: ");
-            String exerciseName = scanner.nextLine();
-            System.out.print("Enter new description: ");
-            String exerciseDescription = scanner.nextLine();
-            System.out.print("1. Strength or 2. Cardio: ");
-            int exerciseCategory = scanner.nextInt();
+            String exerciseName = InputUtils.readString("Enter new name: ");
+            String exerciseDescription = InputUtils.readString("Enter new description: ");
+            int exerciseCategory = InputUtils.readInt("1. Strength or 2. Cardio: ");
 
             System.out.print("Exercise Updated:");
             System.out.print("Name: " + exerciseName);
@@ -158,8 +149,7 @@ public class Admin implements CRUD_OPERATIONS{
 
         try {
             // Get user input
-            System.out.print("Enter the exercise you wish to delete: ");
-            String exerciseNameToDelete = scanner.nextLine();
+            String exerciseNameToDelete = InputUtils.readString("Enter the exercise you wish to delete: ");
 
             // Establish connection
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);

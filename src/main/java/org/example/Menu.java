@@ -15,12 +15,10 @@ public class Menu {
         users.add(startUser);
         users.add(secondUser);
 
-
         //Admin details are pre-created
         Admin admin = new Admin();
 
         WorkoutRecorder recorder = new WorkoutRecorder();
-
 
         do {
             // Print the list of users
@@ -37,9 +35,7 @@ public class Menu {
             System.out.println("3. Admin Login");
             System.out.println("4. Exit");
             System.out.println();
-            System.out.print("Enter your choice: ");
-            int choiceMenu = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
+            int choiceMenu = InputUtils.readInt("Enter your choice: ");
 
             switch (choiceMenu) {
                 case 1:
@@ -56,11 +52,8 @@ public class Menu {
                     break;
                 case 2:
                         System.out.println("Enter user credentials:");
-                        System.out.print("Username: ");
-                        String username = scanner.nextLine();
-                        System.out.print("Password: ");
-                        String password = scanner.nextLine();
-
+                        String username = InputUtils.readString("Enter username: ");
+                        String password = InputUtils.readString("Enter password: ");
                         // Check if the entered credentials match any user
                         for (User u : users) {
                             if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
@@ -87,7 +80,6 @@ public class Menu {
                     System.out.println("Invalid choice");
                     break;
             }
-
             // After the login, check which menu to display
             while (admin.isAdminAccess()) {
                 // Print CRUD Operations Menu
@@ -99,11 +91,10 @@ public class Menu {
                 System.out.println("5. Log out");
                 System.out.println("6. Exit");
                 System.out.println();
-                System.out.print("Enter your choice: ");
                 System.out.println();
                 // Read user input
-                int choiceAdmin = scanner.nextInt();
-                scanner.nextLine(); // Consume newline character
+                int choiceAdmin = InputUtils.readInt("Enter your choice: ");
+
                 switch (choiceAdmin) {
                     case 1:
                         admin.CreateExercise(scanner);
@@ -141,10 +132,8 @@ public class Menu {
                         System.out.println("5. Log out");
                         System.out.println("6. Exit");
                         System.out.println();
-                        System.out.print("Enter your choice: ");
-                        // Read user input
-                        int choiceUser = scanner.nextInt();
-                        scanner.nextLine();
+                        int choiceUser = InputUtils.readInt("Enter your choice: ");
+
                         switch (choiceUser) {
                             case 1:
                                 recorder.RecordUserWorkout();
