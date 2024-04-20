@@ -15,12 +15,10 @@ public class Menu {
         users.add(startUser);
         users.add(secondUser);
 
-
         //Admin details are pre-created
         Admin admin = new Admin();
 
         WorkoutRecorder recorder = new WorkoutRecorder();
-
 
         do {
             // Print the list of users
@@ -82,7 +80,6 @@ public class Menu {
                     System.out.println("Invalid choice");
                     break;
             }
-
             // After the login, check which menu to display
             while (admin.isAdminAccess()) {
                 // Print CRUD Operations Menu
