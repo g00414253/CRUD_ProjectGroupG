@@ -1,22 +1,23 @@
 package org.example;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class RepMax {
     public static void RM() {
-        Scanner scanner = new Scanner(System.in);
+        try {
+            // Input weight lifted and reps done
+            double weight = InputUtils.readDouble("Enter weight in Kg: ");
+            int reps = InputUtils.readInt("Enter number of reps performed: ");
 
-        // Input weight lifted and reps done
-        System.out.print("Enter weight lifted in Kg: ");
-        double weight = scanner.nextDouble();
-        System.out.print("Enter reps performed: ");
-        int reps = scanner.nextInt();
+            // Calculation for 1RM
+            double oneRepMax = calculateOneRepMax(weight, reps);
 
-        // Calculation for 1RM
-        double oneRepMax = calculateOneRepMax(weight, reps);
-
-        // Display the results
-        System.out.print("Estimated 1RM: " + oneRepMax + "kgs");
+            // Display the results
+            System.out.print("Estimated 1RM: " + oneRepMax + "kgs");
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+            RM(); // Recursive call to retry input
+        }
     }
 
     public static double calculateOneRepMax(double weight, int reps) {

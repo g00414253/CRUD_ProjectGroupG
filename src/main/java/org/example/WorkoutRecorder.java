@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class WorkoutRecorder {
@@ -79,30 +80,33 @@ public class WorkoutRecorder {
     public void RecordUserWorkout() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter date (YYYY-MM-DD):");
-        String date = scanner.nextLine();
+        String date = InputUtils.readString("Enter YYYY-MM-DD: ");
 
         boolean choice;
 
         do {
-            System.out.println("Enter exercise:");
-            String exercise = scanner.nextLine();
+            try {
+                String exercise = InputUtils.readString("Enter exercise:");
 
-            System.out.println("Enter number of sets:");
-            int sets = scanner.nextInt();
+                System.out.println("Enter number of sets:");
+                int sets = scanner.nextInt();
 
-            System.out.println("Enter number of reps:");
-            int reps = scanner.nextInt();
+                System.out.println("Enter number of reps:");
+                int reps = scanner.nextInt();
 
-            System.out.println("Enter weight (in kilograms):");
-            int weight = scanner.nextInt();
+                System.out.println("Enter weight (in kilograms):");
+                int weight = scanner.nextInt();
 
-            recordWorkout(date, exercise, sets, reps, weight);
+                recordWorkout(date, exercise, sets, reps, weight);
 
-            System.out.println("Do you have another entry to make (true/false):");
-            choice = scanner.nextBoolean();
-            scanner.nextLine();
-        } while (choice );
+                choice = InputUtils.readBoolean("Do you have another entry to make (true/false):");
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Clear the input buffer
+                choice = true; // Set choice to true to retry input
+            }
+        } while (choice);
     }
 
     public void DisplayWorkout() {
