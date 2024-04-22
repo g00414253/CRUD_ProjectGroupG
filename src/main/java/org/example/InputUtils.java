@@ -43,7 +43,7 @@ public class InputUtils {
             if (input.equals("true") || input.equals("false")) {
                 return Boolean.parseBoolean(input);
             } else {
-                System.out.println("Invalid input. Please enter 'true' or 'false'.");
+                    System.out.println("Invalid input. Please enter 'true' or 'false'.");
             }
         }
     }
