@@ -129,17 +129,20 @@ public class Menu {
                         System.out.println("2. View Workouts");
                         System.out.println("3. 1 Rep Calculator");
                         System.out.println("4. B.M.R Calculator");
-                        System.out.println("5. Log out");
-                        System.out.println("6. Exit");
+                        System.out.println("5. Read database");
+                        System.out.println("6. Log out");
+                        System.out.println("7. Exit");
                         System.out.println();
                         int choiceUser = InputUtils.readInt("Enter your choice: ");
 
                         switch (choiceUser) {
                             case 1:
-                                recorder.RecordUserWorkout();
+                                WorkoutRecorder userRecorder = getUserRecorder(u);
+                                userRecorder.RecordUserWorkout();
                                 break;
                             case 2:
-                                recorder.DisplayWorkout();
+                                WorkoutRecorder userRecorder2 = getUserRecorder(u);
+                                userRecorder2.DisplayWorkout();
                                 break;
                             case 3:
                                 RepMax.RM();
@@ -150,10 +153,14 @@ public class Menu {
                                 System.out.println();
                                 break;
                             case 5:
+                                    u.ReadExercise();
+                                    System.out.println();
+                                break;
+                            case 6:
                                 u.Logout();
                                 System.out.println("Logged out successfully.");
                                 break;
-                            case 6:
+                            case 7:
                                 System.out.println("Exiting...");
                                 System.exit(0);
                                 break;
@@ -164,5 +171,17 @@ public class Menu {
                     }
                 }
         }while(true);
+    }
+    public static WorkoutRecorder getUserRecorder(User u) {
+        List<WorkoutRecorder> recorders = u.getWorkoutRecorders();
+        if (recorders.isEmpty()) {
+            // If the user doesn't have a workout recorder yet, create one and add it to the list
+            WorkoutRecorder recorder = new WorkoutRecorder();
+            u.addWorkoutRecorder(recorder);
+            return recorder;
+        } else {
+            // Otherwise, return the first recorder in the list
+            return recorders.get(0);
+        }
     }
 }
