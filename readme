@@ -1,0 +1,15 @@
+Our project uses a Menu class , to facilitate user interaction
+via a Command line interface (CLI) this class acts as the main application.
+
+The project then has interface "CRUD_OPERATIONS" which the classes "Admin" &
+ "User" implement to interact with database in different ways.
+
+Then there are the classes that handle the functions for the user menu
+these are  "RepMax","BMRCalculator" & "WorkoutRecorder".
+
+The last remaining class is "InputUtils" this which handles all CLI functions,
+to ensure accurate user input handling. This class is essential due to
+our project reliance on user inputs.
+
+Project also includes a testing folder which contains all the files to test the CRUD operations
+for MySQL.
